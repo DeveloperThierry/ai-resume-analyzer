@@ -15,7 +15,7 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Home() {
-  const { auth, kv } = usePuterStore();
+  const { auth, kv, fs } = usePuterStore();
   const navigate = useNavigate();
   const [resumes, setResumes] = useState<Resume[]>([]);
   const [loadingResumes, setLoadingResumes] = useState(false);
@@ -24,22 +24,31 @@ export default function Home() {
       if(!auth.isAuthenticated) navigate('/auth?next=/')
   },[auth.isAuthenticated])
 
+  const loadResumes = async () => {
+    setLoadingResumes(true);
+
+    const resumes = (await kv.list('resume:*', true)) as KVItem[];
+
+    const parsedResumes = resumes?.map((resume) => (
+        JSON.parse(resume.value) as Resume
+    ))
+
+    setResumes(parsedResumes || []);
+    setLoadingResumes(false);
+  }
+
   useEffect(() => {
-    const loadResumes = async () => {
-      setLoadingResumes(true);
-
-      const resumes = (await kv.list('resume:*', true)) as KVItem[];
-
-      const parsedResumes = resumes?.map((resume) => (
-          JSON.parse(resume.value) as Resume
-      ))
-
-      setResumes(parsedResumes || []);
-      setLoadingResumes(false);
-    }
-
     loadResumes()
   }, []);
+
+  const handleDelete = async () => {
+    const files = (await fs.readDir("./")) as FSItem[];
+    files.forEach(async (file) => {
+      await fs.delete(file.path);
+    });
+    await kv.flush();
+    loadResumes()
+  };
 
 
   return (<main className="bg-[url('/images/bg-main.svg')] bg-cover">
@@ -83,6 +92,14 @@ export default function Home() {
           ))}
         </div>
       )}
+      <div>
+          <button
+            className="primary-button w-fit"
+            onClick={handleDelete}
+          >
+            Clear Page
+          </button>
+        </div>
     </section>
   </main>);
 }

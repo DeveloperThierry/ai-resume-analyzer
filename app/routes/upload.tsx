@@ -38,7 +38,7 @@ const Upload = () => {
         const data = {
             id: uuid,
             resumePath: uploadedFile.path,
-            imagePath: '/images/resume_01.png',
+            imagePath: '/images/pdf.png',
             companyName, jobTitle, jobDescription,
             feedback: '',
         }
