@@ -2,7 +2,11 @@
 
 ## 🏷️ Demo
 
-
+![Welcome Page](demo/welcome_page.png)  
+![Resume Feedback](demo/resume_feedback.png)  
+![Upload Page](demo/upload_page.png)  
+![Analyze Page](demo/analyze_page.png)  
+![Home Page](demo/home_page.png)  
 
 
 ## 📜 Description
