@@ -1,13 +1,11 @@
 # 🎉 Resumind Resume AI Analyzer
 
 ## 🏷️ Demo
-
 ![Welcome Page](demo/welcome_page.png)  
-![Resume Feedback](demo/resume_feedback.png)  
+![Home Page](demo/home_page.png)  
 ![Upload Page](demo/upload_page.png)  
 ![Analyze Page](demo/analyze_page.png)  
-![Home Page](demo/home_page.png)  
-
+![Resume Feedback](demo/resume_feedback.png)  
 
 ## 📜 Description
 The AI Resume Analyzer is a **serverless AI resume analyzer** designed to revolutionize the job search process. It acts as your **personal job search assistant**, showing you **exactly how well your resume matches any job post and how to fix it**. This tool addresses the common frustration of sending out numerous resumes and receiving no replies, often because the resume isn't effectively highlighting the candidate's strengths or is not tailored to the specific job requirements.
